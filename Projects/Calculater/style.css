@@ -1,7 +1,8 @@
-#calculatorBG {
+body {
   height: 100vh;
-  background: url(image/Calculater.jpeg) no-repeat center;
-  background-size: cover!important;
+  margin: 0;
+  background: url("image/Calculater.jpeg") no-repeat center/cover;
+  position: relative;
 }
 #calculator {
   width: 400px;
