@@ -1,4 +1,4 @@
-a{
+/* a{
   text-decoration: none!important;
 }
 
@@ -8,3 +8,14 @@ a:hover{
 /* .container{
 
 } */
+ 
+
+header
+{
+  height: 64px;
+}
+
+.headerImage
+{
+  width: 50px;
+}

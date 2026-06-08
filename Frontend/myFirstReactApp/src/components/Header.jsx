@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import Cravings4 from "../Pages/Image/Cravings4.jpg"
+
 
 function Header() {
   return (
     <>
-      <div className="bg-primary-subtle p-2 d-flex justify-content-between align-items-center">
+      {/* <div className="bg-primary-subtle p-2 d-flex justify-content-between align-items-center">
         <div className="text-primary fs-4 fw-bold">My Company</div>
 
         <div className="d-flex gap-4">
@@ -20,7 +22,16 @@ function Header() {
               <button className="btn btn-primary">Register</button>
             </Link>
         </div>
-      </div>
+      </div> */}
+
+      <header className="bg-danger d-flex align-items-center justify-content-between">
+        <div>
+          <img src={Cravings4} alt="" className="headerImage mx-5" />
+        </div>
+        <div>
+          <button>login</button>
+        </div>
+      </header>
     </>
   );
 }
