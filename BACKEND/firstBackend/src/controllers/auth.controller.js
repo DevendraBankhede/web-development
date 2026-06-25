@@ -1,25 +1,44 @@
-import User from "./models/user.model.js";
-import { response } from "express";
+import User from "../models/user.model.js";
 
 export const RegisterUser = async (req, res) => {
+  try {
+    const { fullName, email, password, phone, gender, dob } = req.body;
 
-    try{
-        const{fullName,email,password,phone,gender,dob} = req.body;
+    if (!fullName || !email || !password || !phone || !gender || !dob) {
+      res.status(400).json({ message: "All Feilds Required" });
+      return;
+    }
 
-        if(!fullName || !email || !password || !phone || !gender || !dob){
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      res.status(409).json({ message: "Email Already Registered" });
+      return;
+    }
 
-            res.status(400).json({message:"All Feilds Required" });
-            return;
-        }
+    const photoUrl = `https://placehold.co/600x400?text=${fullName.charAt(0).toUpperCase()}`;
 
-        const existingUser = await User.findOne({ email });
-        if(existingUser) {
-            res.status(409).json({ message: "Email Alerady Registered"});
-            return;
-        }
-    } catch(error) {}
+    const photo = {
+      url: photoUrl,
+      publicId: null,
+    };
+
+    const newUser = await User.create({
+      fullName,
+      email,
+      password,
+      phone,
+      gender,
+      dob,
+      photo,
+    });
+
+    res.status(201).json({ message: "User Created Successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 };
-    export const LoginUser = (req,res) => {
+
+export const LoginUser = (req, res) => {
   res.json({ message: "Login Successfull from Controller" });
 };
 
